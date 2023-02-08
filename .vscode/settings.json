@@ -5,5 +5,7 @@
   "editor.formatOnSave": true,
   "files.autoSave": "onFocusChange",
   "eslint.lintTask.enable": true,
-  "eslint.format.enable": true
+  "eslint.format.enable": true,
+  "sass.disableUnitCompletion": false,
+  "sass.format.enabled": false
 }

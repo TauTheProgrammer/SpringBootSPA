@@ -1,0 +1,13 @@
+$navigator-height: 60px;
+
+.eq-app {
+  width: 100vw;
+  height: 100vh;
+
+  main {
+    width: inherit;
+    height: calc(100% - $navigator-height);
+  }
+}
+
+

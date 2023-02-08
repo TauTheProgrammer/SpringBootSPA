@@ -1,0 +1,8 @@
+.navigator {
+    box-shadow: 0px -9px 5px 0px rgba(0,0,0,0.26);
+
+    .MuiBottomNavigationAction-root.Mui-selected {
+        /* TODO: Use theme color */
+        color: #35E4DA;
+    }
+}

@@ -1,24 +1,38 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/home/Home";
+
+import "./App.scss";
+import { ROUTES_BY_NAME } from "./constants";
+import Layout from "./Layout";
+
+const Journal = React.lazy(() => import("./pages/journal/Journal"));
+const Insight = React.lazy(() => import("./pages/insight/Insight"));
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+        <div>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route path={ROUTES_BY_NAME.HOME} element={<Home />} />
+                    <Route
+                        path={ROUTES_BY_NAME.JOURNAL}
+                        element={
+                            <React.Suspense fallback={<>...</>}>
+                                <Journal />
+                            </React.Suspense>
+                        }
+                    />
+                    <Route
+                        path={ROUTES_BY_NAME.INSIGHT}
+                        element={
+                            <React.Suspense fallback={<>...</>}>
+                                <Insight />
+                            </React.Suspense>
+                        }
+                    />
+                </Route>
+            </Routes>
         </div>
     );
 }
