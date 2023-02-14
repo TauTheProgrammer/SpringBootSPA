@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { ROUTES_BY_INDEX } from "../../constants";
+import { ROUTES_BY_INDEX, IDK } from "../../constants";
 import "./BottomNavigator.scss";
 
 export default function BottomNavigator() {
-    const [value, setValue] = useState<number>(0);
+    const [value, setValue] = useState<number>(IDK[window.location.pathname]);
     const navigate = useNavigate();
 
     return (
