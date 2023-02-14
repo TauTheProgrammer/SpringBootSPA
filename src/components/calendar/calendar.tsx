@@ -4,6 +4,7 @@ import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import {
     format,
+    formatISO,
     startOfWeek,
     addDays,
     startOfMonth,
@@ -18,10 +19,14 @@ import "./calendar.scss";
 import DataRestService from "../../services/DataRestService";
 import { EmotionalRecord } from "../../types";
 
+type CalendarPropTypes = {
+    onSelectedDateChange: (date: string) => void;
+};
+
 // TODO: Add Dots to dates that have data already recorded
-export default function Calendar() {
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    const [activeDate, setActiveDate] = useState(new Date());
+export default function Calendar(props: CalendarPropTypes) {
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+    const [activeDate, setActiveDate] = useState<Date>(new Date());
 
     // Load Data to show blips under days which the user has recorded data
     useEffect(() => {
@@ -43,6 +48,13 @@ export default function Calendar() {
         fetchData();
         postData();
     }, []);
+
+    // TODO: Is this an improper way to lift state up?
+    // Lift state up
+    useEffect(() => {
+        const { onSelectedDateChange } = props;
+        onSelectedDateChange(formatISO(selectedDate));
+    }, [props, selectedDate]);
 
     const getHeader = () => {
         return (

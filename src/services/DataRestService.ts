@@ -11,4 +11,11 @@ export default class DataRestService extends BaseRestService {
         const response = await this.post("/journal", emotionalRecord);
         return response;
     }
+
+    public async getJournalEntryByDate(date: string): EmotionalRecord {
+        const response = await this.get<EmotionalRecord>(
+            `/journal?date=${date}`
+        );
+        return response;
+    }
 }

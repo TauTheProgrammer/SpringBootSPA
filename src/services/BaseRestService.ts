@@ -18,19 +18,19 @@ export default class BaseRestService {
         this.port = "8080";
     }
 
-    protected async get(path: string) {
-        const ret = axios
+    protected async get<Type>(path: string): Type {
+        axios
             .get(this.fullUrl + path, {
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                 },
             })
             .then((response) => {
-                return response;
+                return response.data;
             });
     }
 
-    protected async post(path: string, body: EmotionalRecord) {
+    protected async post<Type>(path: string, body: Type) {
         const ret = axios.post(this.fullUrl + path, body, {
             headers: {
                 "Access-Control-Allow-Origin": "*",
